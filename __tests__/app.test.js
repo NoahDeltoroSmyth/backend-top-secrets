@@ -30,7 +30,9 @@ describe('backend-top-secrets routes', () => {
       password: 'password',
     });
 
-    const res = await request(app).post('/api/v1/auth/signin').send(user);
+    const res = await request(app)
+      .post('/api/v1/users/signin')
+      .send({ email: 'test@gmail.com', password: 'password' });
 
     expect(res.body).toEqual({
       message: 'Signed in successfully!',
