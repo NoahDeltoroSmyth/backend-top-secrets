@@ -14,9 +14,26 @@
   - email : text Required
   - password : text Required (hash & salt)
 
-## Approach
+## Workflow Approach
 
 1. test
 2. controller
 3. model
 4. middleware (refactor)
+
+## Order of tasks
+
+1. get a user able to register using email & password
+2. get a user able to sign in using email & password
+3. get a user able to create secrets using POST to `/api/v1/secrets`
+4. get a user able to view secrets by GET to `/api/v1/secrets`
+
+## Dependencies
+
+- npm i jsonwebtoken cookie-parser bcryptjs
+
+## MISC
+
+- Don't forget YML file at the end
+- Work in verticals (refer to Workflow Approach)
+- PASSWORD MUST BE PRIVATE. DO NOT STORE PASSWORD AS PLAIN TEXT OR IN JWT
