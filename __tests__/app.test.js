@@ -53,7 +53,7 @@ describe('backend-top-secrets routes', () => {
 
     await agent
       .post('/api/v1/users/session')
-      .send({ email: 'test@gmail.com', password: 'password' });
+      .send({ email: 'test2@gmail.com', password: 'password' });
     res = await agent.get('/api/v1/secrets');
     expect(res.status).toEqual(200);
   });
