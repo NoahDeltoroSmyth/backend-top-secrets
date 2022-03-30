@@ -27,6 +27,7 @@
 2. get a user able to sign in using email & password
 3. get a user able to create secrets using POST to `/api/v1/secrets`
 4. get a user able to view secrets by GET to `/api/v1/secrets`
+5. get a user able to sign out
 
 ## Dependencies
 
@@ -37,3 +38,8 @@
 - Don't forget YML file at the end
 - Work in verticals (refer to Workflow Approach)
 - PASSWORD MUST BE PRIVATE. DO NOT STORE PASSWORD AS PLAIN TEXT OR IN JWT
+
+## Difficulties
+
+- Baby step workflow for sign in. Once I wrote the test, it was hard to make a basic controller before writing model and service.
+-
