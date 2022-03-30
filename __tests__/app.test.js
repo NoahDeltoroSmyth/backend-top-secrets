@@ -57,4 +57,25 @@ describe('backend-top-secrets routes', () => {
     res = await agent.get('/api/v1/secrets');
     expect(res.status).toEqual(200);
   });
+
+  it('allows a signed in user to create secrets', async () => {
+    const agent = request.agent(app);
+
+    await UserService.create({
+      email: 'test3@gmail.com',
+      password: 'password',
+    });
+
+    await agent
+      .post('/api/v1/users/session')
+      .send({ email: 'test3@gmail.com', password: 'password' });
+
+    const secret = {
+      title: 'This is my secret',
+      description: 'One time I went to the store',
+      created_at: expect.any(Number),
+    };
+    const res = await request(app).post('/api/v1/secrets').send(secret);
+    expect(res.body).toEqual({ id: expect.any(String), ...secret });
+  });
 });
