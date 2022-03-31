@@ -78,4 +78,20 @@ describe('backend-top-secrets routes', () => {
     const res = await request(app).post('/api/v1/secrets').send(secret);
     expect(res.body).toEqual({ id: expect.any(String), ...secret });
   });
+
+  it('allows a user to log out', async () => {
+    const agent = request.agent(app);
+
+    await UserService.create({
+      email: 'test4@gmail.com',
+      password: 'password',
+    });
+
+    await agent
+      .post('/api/v1/users/session')
+      .send({ email: 'test4@gmail.com', password: 'password' });
+
+    const res = await agent.delete('/api/v1/users/session');
+    expect(res.body).toEqual({ success: true, message: 'Sign out successful' });
+  });
 });
