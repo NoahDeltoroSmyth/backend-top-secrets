@@ -67,6 +67,9 @@ describe('backend-top-secrets routes', () => {
       createdAt: expect.any(String),
     };
 
+    const resp = await agent.post('/api/v1/secrets');
+    expect(resp.status).toEqual(401);
+
     await UserService.create({
       email: 'test3@gmail.com',
       password: 'password',
@@ -74,8 +77,7 @@ describe('backend-top-secrets routes', () => {
     await agent
       .post('/api/v1/users/session')
       .send({ email: 'test3@gmail.com', password: 'password' });
-
-    const res = await request(app).post('/api/v1/secrets').send(secret);
+    const res = await agent.post('/api/v1/secrets').send(secret);
     expect(res.body).toEqual({ id: expect.any(String), ...secret });
   });
 
